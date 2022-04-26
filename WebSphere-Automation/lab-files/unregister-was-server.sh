@@ -18,11 +18,11 @@ echo "Usage: ./unregister-was-server.sh 9057 (OR) 85515"
 
 
 if [ $1 == "9057" ] 
-  then node="studentNode01"
-       cell="itzvsi-vri7rlrnNode01Cell"
+  then node="studentNode02"
+       cell="itzvsi-aaycy7kkNode02Cell"
     else if [ $1 == "85515" ]
     then node="studentNode01"
-	     cell="itzvsi-o7c375zvNode01Cell"
+	     cell="itzvsi-aaycy7kkNode01Cell"
     else node="00"
 	     cell="000" 
     fi
@@ -48,4 +48,3 @@ rm /opt/IBM/WebSphere/AppServer$1/profiles/AppSrv01/config/cells/$cell/nodes/$no
 echo "Server UN-registered from the WAS Metering service"
 echo "" 
 echo "Next, from the WSA UI, manually remove the server from the servers list"
-
