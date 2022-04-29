@@ -1,0 +1,21 @@
+apiVersion: apps.openliberty.io/v1beta2
+kind: OpenLibertyApplication
+metadata:
+  name: daytrader
+spec:
+  applicationImage: 'image-registry.openshift-image-registry.svc:5000/daytrader-wlp0/daytrader2wlp'
+  pullPolicy: Always
+  service:
+    port: 9080
+  expose: true
+  env:
+    - name: TradeDataSource_serverName_1
+      valueFrom:
+        secretKeyRef:        
+          name: db2-secret
+          key: JDBC_HOST
+    - name: NoTxTradeDataSource_serverName_1
+      valueFrom:
+        secretKeyRef:        
+          name: db2-secret
+          key: JDBC_HOST
