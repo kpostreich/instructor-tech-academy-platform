@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: plantsbywebsphereee6
+  name: plantsbywebsphereee6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plantsbywebsphereee6
+  template:
+    metadata:
+      labels:
+        app: plantsbywebsphereee6
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/plantsbywebsphere-twas/plantsbywebsphere2twas:latest
+          imagePullPolicy: Always
+          name: plantsbywebsphereee6
+          ports:
+            - containerPort: 9080
+              protocol: TCP
+      hostAliases: 
+      - hostnames: 
+        - db2host
+        - itzvsi-nlmhsf0o.dte.demo.ibmcloud.com   #(this is your VM hostname)
+        ip: 67.228.82.34                              #(this is your VM public IP Address)

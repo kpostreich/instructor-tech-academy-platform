@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: plantsbywebsphereee6
+  name: plantsbywebsphereee6
+spec:
+  path:
+    /PlantsByWebSphere
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: plantsbywebsphereee6
+    weight: 100

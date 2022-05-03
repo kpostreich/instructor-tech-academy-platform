@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: daytrader2ee5
+  name: daytrader2ee5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daytrader2ee5
+  template:
+    metadata:
+      labels:
+        app: daytrader2ee5
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/daytrader-twas/daytrader2ee5:latest
+          imagePullPolicy: Always
+          name: daytrader2ee5
+          ports:
+            - containerPort: 9080
+              protocol: TCP
+      hostAliases: 
+        - hostnames: 
+          - db2host
+          - itzvsi-n6qdrxpn.dte.demo.ibmcloud.com   #(this is your VM hostname)
+          ip: 67.228.82.52                              #(this is your VM public IP Address)

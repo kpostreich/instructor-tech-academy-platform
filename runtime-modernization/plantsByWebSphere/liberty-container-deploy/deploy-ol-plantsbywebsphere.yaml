@@ -1,0 +1,21 @@
+apiVersion: apps.openliberty.io/v1beta2
+kind: OpenLibertyApplication
+metadata:
+  name: plantsbywebsphere
+spec:
+  applicationImage: 'image-registry.openshift-image-registry.svc:5000/plantsbywebsphere-wlp/plantsbywebsphere2wlp'
+  pullPolicy: Always
+  service:
+    port: 9080
+  expose: true
+  env:
+    - name: PBWDataSource_serverName_1
+      valueFrom:
+        secretKeyRef:        
+          name: db2-secret
+          key: JDBC_HOST
+    - name: NoTxPBWDataSource_serverName_1
+      valueFrom:
+        secretKeyRef:        
+          name: db2-secret
+          key: JDBC_HOST
